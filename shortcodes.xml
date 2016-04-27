@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @copyright	Copyright (c) 2015 system. All rights reserved.
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ */
+-->
+<extension type="plugin" version="3.0" group="system" method="upgrade">
+	<name>plg_system_shortcodes</name>
+	<author></author>
+	<creationDate>September 2015</creationDate>
+	<copyright>Copyright (c) 2015 system. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail></authorEmail>
+	<authorUrl></authorUrl>
+	<version>1.0.1</version>
+	<description>
+	<![CDATA[
+		<p>Replace shortcodes</p>
+	]]>
+	</description>
+
+	<files>
+		<filename plugin="shortcodes">shortcodes.php</filename>
+		<filename>index.html</filename>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/modules/mod_zoocategory/fields">
+				<field name="category" type="hidden" label="" required="false" description="" />
+				<field name="application" type="zooapplication" default="" label="Category" description="APPLICATION_DESCRIPTION" categories="true" frontpage="true" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
