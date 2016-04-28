@@ -41,25 +41,25 @@ class plgsystemShortCodes extends JPlugin {
 			preg_match_all('#\[col\](.*)\[/col\]#Uis', $tabs[1], $lst);
 			if (in_array(count($lst[0]), array(1,2,3,4,6))) {
 				$tabs[1] = preg_replace_callback('#\[col\](.*)\[/col\]#Uis', function ($tab) use (&$lst){
-					return '<div class="col-'.(12/count($lst[0])).'">'.$tab[1].'</div>';
+					return '<div class="sm-col-'.(12/count($lst[0])).'">'.$tab[1].'</div>';
 				}, $tabs[1]);
-				return '<div class="row">'.$tabs[1].'</div>';
+				return '<div class="sm-row">'.$tabs[1].'</div>';
 			} else {
 				$tabs[1] = preg_replace_callback('#\[col\](.*)\[/col\]#Uis', function ($tab) use (&$lst){
-					return '<div class="col-1" style="width:'.(100/count($lst[0])).'%;">'.$tab[1].'</div>';
+					return '<div class="sm-col-1" style="width:'.(100/count($lst[0])).'%;">'.$tab[1].'</div>';
 				}, $tabs[1]);
-				return '<div class="row">'.$tabs[1].'</div>';
+				return '<div class="sm-row">'.$tabs[1].'</div>';
 			}
 		}, $body); 
 		$body = preg_replace_callback('#\[tabs\](.*)\[\/tabs\]#uUis', function ($tabs) {
 			$buttons = array();
 			$data = array();
 			$tabs[1] = preg_replace_callback('#\[tab[\s]+([^\]]+)\](.*)\[/tab\]#Uis', function ($tab) use (&$buttons){
-				$buttons['<a href="#" class="'.(count($buttons)?:'active').'" rel="descr'.count($buttons).'">'.$tab[1].'</a>'] = '<div class="'.(count($buttons)?:'active').'"  id="descr'.count($buttons).'">'.$tab[2].'</div>';
+				$buttons['<a href="javascript:void(0)" class="'.(count($buttons)?:'active').' sm-tabs-buttons-button" rel="descr'.count($buttons).'">'.$tab[1].'</a>'] = '<div class="sm-tabs-layers-layer '.(count($buttons)?:'active').'"  id="descr'.count($buttons).'">'.$tab[2].'</div>';
 			}, $tabs[1]);
-			return '<div class="tabs">
-				<div class="buttons">'.implode('', array_keys($buttons)).'</div>
-				<div class="pages">'.implode('', array_values($buttons)).'</div>
+			return '<div class="sm-col-12 sm-tabs"> 
+                    <div class="sm-tabs-buttons">'.implode('', array_keys($buttons)).'</div>
+				<div class="sm-tabs-layers">'.implode('', array_values($buttons)).'</div>
 			</div>';
 		}, $body); 
 		$body = preg_replace_callback('#\[alert\](.*)\[\/alert\]#uUis', function ($tabs) {
