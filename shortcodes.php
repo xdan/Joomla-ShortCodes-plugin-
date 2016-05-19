@@ -37,6 +37,10 @@ class plgsystemShortCodes extends JPlugin {
 		$application = JFactory::getApplication();
 		if($application->isAdmin() or $this->isAjax()) return false;
 		$body = implode('', JResponse::getBody(true));
+		$body = preg_replace_callback('#\[youtube([^\]]+)\]#uUis', function ($match) {
+            $data = explode(' ', trim($match[1]));
+            return '<iframe width="'.(isset($data[1]) ? (int)$data[1] :560).'" height="'.(isset($data[2]) ? (int)$data[2] : 315).'" src="'.$data[0].'" frameborder="0" allowfullscreen></iframe>';
+        }, $body);
 		$body = preg_replace_callback('#\[cols\](.*)\[\/cols\]#uUis', function ($tabs) {
 			preg_match_all('#\[col\](.*)\[/col\]#Uis', $tabs[1], $lst);
 			if (in_array(count($lst[0]), array(1,2,3,4,6))) {
@@ -51,6 +55,7 @@ class plgsystemShortCodes extends JPlugin {
 				return '<div class="sm-row">'.$tabs[1].'</div>';
 			}
 		}, $body); 
+
 		$body = preg_replace_callback('#\[tabs\](.*)\[\/tabs\]#uUis', function ($tabs) {
 			$buttons = array();
 			$data = array();
