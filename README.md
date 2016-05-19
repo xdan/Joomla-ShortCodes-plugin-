@@ -24,5 +24,5 @@ Joomla ShortCodes plugin
 ```
 
 ```
-[youtube https://www.youtube.com/embed/6L7QY3br8jc]
+[youtube https://www.youtube.com/embed/6L7QY3br8jc 200 200]
 ```
