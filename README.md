@@ -1,6 +1,6 @@
 # Joomla-ShortCodes-plugin-
 Joomla ShortCodes plugin 
-## How use
+## How to use
 ```
 [tabs]
     [tab Tab Title 1]
